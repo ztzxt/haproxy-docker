@@ -5,6 +5,8 @@ If a request sent to `localhost:4444/staj`, Flask responds with "Hello World!" m
 
 You should switch to root directory of the project before running those commands. 
 
+Note: Exact commands might change depending on actual OS. For example, you might have to run `sudo docker-compose up` instead. Add `-d` parameter to `docker-compose up` to run it in background. 
+
     docker-compose up
     curl localhost:4444/staj
         Hello World from Flask!
