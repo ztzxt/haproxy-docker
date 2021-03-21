@@ -1,0 +1,26 @@
+services: 
+  flask:
+    build: ./flask
+    ports:
+      - 4444:4444
+    volumes: 
+      - ./flask:/flask
+    command: python /flask/server.py
+  nodejs:
+    build: ./nodejs
+    ports:
+      - 5555:5555
+    command: npm start
+    volumes:
+      - ./nodejs:/nodejs
+      - /nodejs/node_modules
+  haproxy:
+    depends_on:
+      - flask
+      - nodejs
+    image: haproxy:lts-alpine
+    command: haproxy -f /haproxy/haproxy.cfg
+    ports:
+      - 8888:8888
+    volumes: 
+      - ./haproxy:/haproxy
